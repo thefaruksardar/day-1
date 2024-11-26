@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 app.listen(4000);
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // GET
@@ -16,10 +17,9 @@ app.get("/about", (req, res) => {
 });
 
 // POST
+app.post("/name", (req, res) => {
+  // console.log(req.body.name);
+  const name = req.body.name;
 
-app.post("/", (req, res) => {
-  console.log(req);
-  const name = req.body.name; // Get name from query parameters
-
-  res.send(`You cant see me!, ${name}`);
+  res.send(`My name is ${name}`);
 });
